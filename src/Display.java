@@ -39,7 +39,11 @@ public class Display extends JPanel{
 		
 		JPanel rightSidebar = new JPanel();
 		rightSidebar.add(new JLabel("stuff goes here, print Laplacian matrix maybe?"));
+		JButton laplacianButton = new JButton("Print Laplacian");
+		laplacianButton.addActionListener(new LaplacianListener());
+		rightSidebar.add(laplacianButton);
 		add(rightSidebar, BorderLayout.EAST);
+
 		
 		footnote = new JLabel("Choose an action");
 		footnote.setHorizontalAlignment(SwingConstants.CENTER);
@@ -70,6 +74,12 @@ public class Display extends JPanel{
 		public void actionPerformed(ActionEvent e){
 			footnote.setText("Choose vertex to fire");
 			graphPanel.actionNum = 4;
+		}
+	}
+
+	private class LaplacianListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			System.out.println("Laplacian gets printed");
 		}
 	}
 }

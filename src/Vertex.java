@@ -21,7 +21,7 @@ public class Vertex extends JButton{
 		this.x = x;
 		this.y = y;
 		setBounds(x-0*insets.left, y-0*insets.top, 2*radius, 2*radius);
-		System.out.println(insets.left + " affefaer " + insets.top);
+		//System.out.println(insets.left + " affefaer " + insets.top);
 		chips = 42;
 		setFont(font);
 		setText(Integer.toString(chips));

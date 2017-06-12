@@ -46,7 +46,7 @@ public class GraphPanel extends JPanel{
 			e.draw(buffer);
 		}
 		System.out.println(edges.size());
-		System.out.println(getWidth() + " draw " + getHeight());
+		//System.out.println(getWidth() + " draw " + getHeight());
 		g.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
 	}
 	
