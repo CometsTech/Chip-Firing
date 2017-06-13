@@ -49,6 +49,17 @@ public class Vertex extends JButton{
 				((Vertex)(e.getSource())).getParent().repaint();
 				GraphPanel.actionNum = 2;
 			}
+			else if(GraphPanel.actionNum == 4){
+				Vertex v = (Vertex) e.getSource();
+				v.chips -= v.adjacencies.size();
+				v.setText(Integer.toString(v.chips));
+				for(int i : v.adjacencies){
+					Vertex w = GraphPanel.vertices.get(i);
+					w.chips += 1;
+					w.setText(Integer.toString(w.chips));
+				}
+				System.out.println("Fired vertex");
+			}
 		}
 	}
 }
