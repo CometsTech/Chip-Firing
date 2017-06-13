@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -8,8 +7,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashSet;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class GraphPanel extends JPanel{
@@ -17,14 +16,14 @@ public class GraphPanel extends JPanel{
 	private Graphics2D buffer;
 	
 	public static ArrayList<Vertex> vertices;
-	public static ArrayList<Edge> edges;
+	public static HashSet<Edge> edges;
 	public static int actionNum;
 	
 	final static int WIDTH = 1000, HEIGHT = 700;
 
 	public GraphPanel(){
 		vertices = new ArrayList<Vertex>();
-		edges = new ArrayList<Edge>();
+		edges = new HashSet<Edge>();
 		actionNum = 0;
 		
 		this.setSize(WIDTH, HEIGHT);

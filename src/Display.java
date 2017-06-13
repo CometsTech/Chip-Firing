@@ -80,6 +80,23 @@ public class Display extends JPanel{
 	private class LaplacianListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			System.out.println("Laplacian gets printed");
+			ArrayList<ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>>(graphPanel.vertices.size());
+			for(Vertex v : graphPanel.vertices){
+				ArrayList<Integer> row = new ArrayList<Integer>(graphPanel.vertices.size());
+				for(int i = 0; i < graphPanel.vertices.size(); i++){
+					int index = Integer.parseInt(v.getToolTipText());
+					if(v.adjacencies.contains(i)){
+						row.add(1);
+					}
+					else if(i == index){
+						row.add(-v.adjacencies.size());
+					}
+					else row.add(0);
+				}
+				matrix.add(row);
+			}
+			System.out.println(matrix.toString());
+			System.out.print(matrix.toString().replaceAll("\\[", "{").replaceAll("\\]", "}"));
 		}
 	}
 }

@@ -2,25 +2,26 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.HashSet;
 
 import javax.swing.JButton;
 
 public class Vertex extends JButton{
-	private int radius = 25;
 	int x, y, chips;
 	GraphPanel panel;
 	
-	public ArrayList<Vertex> adjacencies = new ArrayList<Vertex>();
+	public HashSet<Integer> adjacencies;
 	public static int index1;
+	public static final int RADIUS = 25;
 	
 	Font font = new Font("Serif", Font.BOLD, 12);
 	Insets insets = getInsets();
 	
 	public Vertex(int x, int y){
 		this.x = x;
-		this.y = y;
-		setBounds(x-0*insets.left, y-0*insets.top, 2*radius, 2*radius);
+		this.y = y-Vertex.RADIUS;
+		adjacencies = new HashSet<Integer>();
+		setBounds(x-Vertex.RADIUS, this.y-Vertex.RADIUS, 2*RADIUS, 2*RADIUS);
 		//System.out.println(insets.left + " affefaer " + insets.top);
 		chips = 42;
 		setFont(font);
@@ -40,8 +41,12 @@ public class Vertex extends JButton{
 				System.out.println(index1);
 			}
 			else if(GraphPanel.actionNum == 3){
-				Edge edge = new Edge(GraphPanel.vertices.get(index1), (Vertex) e.getSource());
+				Vertex v1 = GraphPanel.vertices.get(index1), v2 = (Vertex) e.getSource();
+				Edge edge = new Edge(v1, v2);
+				v1.adjacencies.add(GraphPanel.vertices.indexOf(v2));
+				v2.adjacencies.add(index1);
 				GraphPanel.edges.add(edge);
+				((Vertex)(e.getSource())).getParent().repaint();
 				GraphPanel.actionNum = 2;
 			}
 		}
