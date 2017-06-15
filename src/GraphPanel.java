@@ -18,6 +18,7 @@ public class GraphPanel extends JPanel{
 	public static ArrayList<Vertex> vertices;
 	public static HashSet<Edge> edges;
 	public static int actionNum;
+	public static Vertex selected;
 	
 	final static int WIDTH = 1000, HEIGHT = 700;
 
@@ -28,7 +29,7 @@ public class GraphPanel extends JPanel{
 		
 		this.setSize(WIDTH, HEIGHT);
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-		System.out.println(getWidth() + " " + getHeight());
+		//System.out.println(getWidth() + " " + getHeight());
 		buffer = (Graphics2D)image.getGraphics();
 		buffer.setBackground(Color.WHITE);
 		
@@ -44,7 +45,7 @@ public class GraphPanel extends JPanel{
 		for(Edge e : edges){
 			e.draw(buffer);
 		}
-		System.out.println(edges.size());
+		//System.out.println(edges.size());
 		//System.out.println(getWidth() + " draw " + getHeight());
 		g.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
 	}
@@ -55,7 +56,7 @@ public class GraphPanel extends JPanel{
 			if(actionNum == 1){
 				Point p = e.getLocationOnScreen();
 				Vertex v = new Vertex(p.x, p.y);
-				System.out.println(p.x + " " + p.y);
+				//System.out.println(p.x + " " + p.y);
 				vertices.add(v);
 				v.setToolTipText(Integer.toString(vertices.indexOf(v)));
 				add(v);
@@ -63,7 +64,7 @@ public class GraphPanel extends JPanel{
 				parent.repaint();
 			}
 			
-			if(actionNum == 2){
+			else if(actionNum == 2){
 			}
 		}
 

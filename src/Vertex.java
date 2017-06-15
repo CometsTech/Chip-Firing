@@ -35,10 +35,14 @@ public class Vertex extends JButton{
 	
 	private class VertexListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			if(GraphPanel.actionNum == 2){
+			if(GraphPanel.actionNum == 1){
+				GraphPanel.selected = (Vertex) e.getSource();
+			}
+
+			else if(GraphPanel.actionNum == 2){
 				index1 = GraphPanel.vertices.indexOf(e.getSource());
 				GraphPanel.actionNum = 3;
-				System.out.println(index1);
+				//System.out.println(index1);
 			}
 			else if(GraphPanel.actionNum == 3){
 				Vertex v1 = GraphPanel.vertices.get(index1), v2 = (Vertex) e.getSource();
@@ -58,7 +62,7 @@ public class Vertex extends JButton{
 					w.chips += 1;
 					w.setText(Integer.toString(w.chips));
 				}
-				System.out.println("Fired vertex");
+				//System.out.println("Fired vertex");
 			}
 		}
 	}

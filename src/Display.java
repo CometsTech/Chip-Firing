@@ -39,9 +39,14 @@ public class Display extends JPanel{
 		
 		JPanel rightSidebar = new JPanel();
 		rightSidebar.add(new JLabel("stuff goes here, print Laplacian matrix maybe?"));
+		rightSidebar.setLayout(new GridLayout(9, 2, 20, 20));
 		JButton laplacianButton = new JButton("Print Laplacian");
 		laplacianButton.addActionListener(new LaplacianListener());
+		JButton increaseChipsButton = new JButton("Increase Chips");
+		JButton decreaseChipsButton = new JButton("Decrease Chips");
 		rightSidebar.add(laplacianButton);
+		rightSidebar.add(increaseChipsButton);
+		rightSidebar.add(decreaseChipsButton);
 		add(rightSidebar, BorderLayout.EAST);
 
 		
@@ -52,7 +57,7 @@ public class Display extends JPanel{
 	
 	public class SelectListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			footnote.setText("Select mode");
+			footnote.setText("Select node");
 			graphPanel.actionNum = 0;
 		}
 	}
@@ -79,7 +84,7 @@ public class Display extends JPanel{
 
 	private class LaplacianListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			System.out.println("Laplacian gets printed");
+			//System.out.println("Laplacian gets printed");
 			ArrayList<ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>>(graphPanel.vertices.size());
 			for(Vertex v : graphPanel.vertices){
 				ArrayList<Integer> row = new ArrayList<Integer>(graphPanel.vertices.size());
@@ -95,8 +100,8 @@ public class Display extends JPanel{
 				}
 				matrix.add(row);
 			}
-			System.out.println(matrix.toString());
-			System.out.print(matrix.toString().replaceAll("\\[", "{").replaceAll("\\]", "}"));
+			//System.out.println(matrix.toString());
+			System.out.println(matrix.toString().replaceAll("\\[", "{").replaceAll("\\]", "}"));
 		}
 	}
 }
