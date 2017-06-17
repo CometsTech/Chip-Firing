@@ -44,6 +44,8 @@ public class Display extends JPanel{
 		laplacianButton.addActionListener(new LaplacianListener());
 		JButton increaseChipsButton = new JButton("Increase Chips");
 		JButton decreaseChipsButton = new JButton("Decrease Chips");
+		increaseChipsButton.addActionListener(new IncreaseChipsListener());
+		decreaseChipsButton.addActionListener(new DecreaseChipsListener());
 		rightSidebar.add(laplacianButton);
 		rightSidebar.add(increaseChipsButton);
 		rightSidebar.add(decreaseChipsButton);
@@ -102,6 +104,22 @@ public class Display extends JPanel{
 			}
 			//System.out.println(matrix.toString());
 			System.out.println(matrix.toString().replaceAll("\\[", "{").replaceAll("\\]", "}"));
+		}
+	}
+
+	private class IncreaseChipsListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			GraphPanel.selected.chips += 1;
+			GraphPanel.selected.setText(Integer.toString(GraphPanel.selected.chips));
+			GraphPanel.selected.getParent().repaint();
+		}
+	}
+
+	private class DecreaseChipsListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			GraphPanel.selected.chips -= 1;
+			GraphPanel.selected.setText(Integer.toString(GraphPanel.selected.chips));
+			GraphPanel.selected.getParent().repaint();
 		}
 	}
 }

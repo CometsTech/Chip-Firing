@@ -60,6 +60,7 @@ public class GraphPanel extends JPanel{
 				vertices.add(v);
 				v.setToolTipText(Integer.toString(vertices.indexOf(v)));
 				add(v);
+				selected = v;
 				Container parent = v.getParent();
 				parent.repaint();
 			}

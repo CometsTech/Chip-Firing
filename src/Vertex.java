@@ -23,7 +23,7 @@ public class Vertex extends JButton{
 		adjacencies = new HashSet<Integer>();
 		setBounds(x-Vertex.RADIUS, this.y-Vertex.RADIUS, 2*RADIUS, 2*RADIUS);
 		//System.out.println(insets.left + " affefaer " + insets.top);
-		chips = 42;
+		chips = 0;
 		setFont(font);
 		setText(Integer.toString(chips));
 		addActionListener(new VertexListener());
@@ -35,11 +35,9 @@ public class Vertex extends JButton{
 	
 	private class VertexListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			if(GraphPanel.actionNum == 1){
-				GraphPanel.selected = (Vertex) e.getSource();
-			}
+			GraphPanel.selected = (Vertex) e.getSource();
 
-			else if(GraphPanel.actionNum == 2){
+			if(GraphPanel.actionNum == 2){
 				index1 = GraphPanel.vertices.indexOf(e.getSource());
 				GraphPanel.actionNum = 3;
 				//System.out.println(index1);
