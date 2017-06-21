@@ -1,1 +1,3 @@
-.class
+*.class
+/src/*.class
+/bin/*.class
