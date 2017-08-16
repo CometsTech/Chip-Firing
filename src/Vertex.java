@@ -44,6 +44,10 @@ public class Vertex extends JButton{
 			}
 			else if(GraphPanel.actionNum == 3){
 				Vertex v1 = GraphPanel.vertices.get(index1), v2 = (Vertex) e.getSource();
+				if(v1 == v2){
+					GraphPanel.actionNum = 2;
+					return;
+				}
 				Edge edge = new Edge(v1, v2);
 				v1.adjacencies.add(GraphPanel.vertices.indexOf(v2));
 				v2.adjacencies.add(index1);
