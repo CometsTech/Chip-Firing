@@ -55,9 +55,18 @@ public class Display extends JPanel{
 		add(rightSidebar, BorderLayout.EAST);
 
 		
+		JPanel bottomPanel = new JPanel();
+		bottomPanel.setLayout(new GridLayout(1, 3, 20, 0));
+		JButton saveButton = new JButton("Save Divisor");
+		JButton loadButton = new JButton("Load Divisor");
+		saveButton.addActionListener(new SaveDivisorListener());
+		loadButton.addActionListener(new LoadDivisorListener());
 		footnote = new JLabel("Choose an action");
 		footnote.setHorizontalAlignment(SwingConstants.CENTER);
-		add(footnote, BorderLayout.SOUTH);
+		bottomPanel.add(saveButton);
+		bottomPanel.add(footnote);
+		bottomPanel.add(loadButton);
+		add(bottomPanel, BorderLayout.SOUTH);
 	}
 	
 	public class SelectListener implements ActionListener{
@@ -127,6 +136,25 @@ public class Display extends JPanel{
 	private class ReducedDivisorListener implements ActionListener{
 		 public void actionPerformed(ActionEvent e){
 			graphPanel.dhar(graphPanel.selected); //XXX rethink statics
+		}
+	}
+
+	private class SaveDivisorListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			graphPanel.savedDivisor = new ArrayList<Integer>();
+			for(Vertex v : graphPanel.vertices){
+				graphPanel.savedDivisor.add(v.chips);
+			}
+			footnote.setText("Divisor saved");
+		}
+	}
+
+	private class LoadDivisorListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			for(int i = 0; i < graphPanel.vertices.size(); i++){
+				graphPanel.vertices.get(i).setChips(graphPanel.savedDivisor.get(i));
+			}
+			footnote.setText("Divisor loaded");
 		}
 	}
 }

@@ -16,6 +16,7 @@ public class GraphPanel extends JPanel{
 	private Graphics2D buffer;
 	
 	public static ArrayList<Vertex> vertices;
+	public static ArrayList<Integer> savedDivisor;
 	public static HashSet<Edge> edges;
 	public static int actionNum;
 	public static Vertex selected;
