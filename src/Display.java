@@ -46,9 +46,12 @@ public class Display extends JPanel{
 		JButton decreaseChipsButton = new JButton("Decrease Chips");
 		increaseChipsButton.addActionListener(new IncreaseChipsListener());
 		decreaseChipsButton.addActionListener(new DecreaseChipsListener());
+		JButton reducedDivisorButton = new JButton("Reduce Divisor");
+		reducedDivisorButton.addActionListener(new ReducedDivisorListener());
 		rightSidebar.add(laplacianButton);
 		rightSidebar.add(increaseChipsButton);
 		rightSidebar.add(decreaseChipsButton);
+		rightSidebar.add(reducedDivisorButton);
 		add(rightSidebar, BorderLayout.EAST);
 
 		
@@ -109,17 +112,21 @@ public class Display extends JPanel{
 
 	private class IncreaseChipsListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			GraphPanel.selected.chips += 1;
-			GraphPanel.selected.setText(Integer.toString(GraphPanel.selected.chips));
-			GraphPanel.selected.getParent().repaint();
+			GraphPanel.selected.setChips(graphPanel.selected.chips + 1);
+			//graphPanel.selected.getParent().repaint();
 		}
 	}
 
 	private class DecreaseChipsListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			GraphPanel.selected.chips -= 1;
-			GraphPanel.selected.setText(Integer.toString(GraphPanel.selected.chips));
-			GraphPanel.selected.getParent().repaint();
+      GraphPanel.selected.setChips(graphPanel.selected.chips - 1);
+			//graphPanel.selected.getParent().repaint();
+		}
+	}
+
+	private class ReducedDivisorListener implements ActionListener{
+		 public void actionPerformed(ActionEvent e){
+			graphPanel.dhar(graphPanel.selected); //XXX rethink statics
 		}
 	}
 }

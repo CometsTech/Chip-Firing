@@ -28,14 +28,24 @@ public class Vertex extends JButton{
 		setText(Integer.toString(chips));
 		addActionListener(new VertexListener());
 	}
+
+	public void setChips(int chips){
+		this.chips = chips;
+		setText(Integer.toString(chips));
+	}
 	
 	public void fire(){
-		
+		chips -= adjacencies.size();
+		setText(Integer.toString(chips));
+		for(int i : adjacencies){
+			Vertex w = GraphPanel.vertices.get(i);
+			w.setChips(w.chips + 1);
+		}
 	}
 	
 	private class VertexListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			GraphPanel.selected = (Vertex) e.getSource();
+			GraphPanel.setSelected((Vertex) e.getSource());
 
 			if(GraphPanel.actionNum == 2){
 				index1 = GraphPanel.vertices.indexOf(e.getSource());
@@ -44,10 +54,6 @@ public class Vertex extends JButton{
 			}
 			else if(GraphPanel.actionNum == 3){
 				Vertex v1 = GraphPanel.vertices.get(index1), v2 = (Vertex) e.getSource();
-				if(v1 == v2){
-					GraphPanel.actionNum = 2;
-					return;
-				}
 				Edge edge = new Edge(v1, v2);
 				v1.adjacencies.add(GraphPanel.vertices.indexOf(v2));
 				v2.adjacencies.add(index1);
@@ -57,13 +63,7 @@ public class Vertex extends JButton{
 			}
 			else if(GraphPanel.actionNum == 4){
 				Vertex v = (Vertex) e.getSource();
-				v.chips -= v.adjacencies.size();
-				v.setText(Integer.toString(v.chips));
-				for(int i : v.adjacencies){
-					Vertex w = GraphPanel.vertices.get(i);
-					w.chips += 1;
-					w.setText(Integer.toString(w.chips));
-				}
+        v.fire();
 				//System.out.println("Fired vertex");
 			}
 		}
