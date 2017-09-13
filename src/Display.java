@@ -3,6 +3,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -104,13 +105,16 @@ public class Display extends JPanel{
 				ArrayList<Integer> row = new ArrayList<Integer>(graphPanel.vertices.size());
 				for(int i = 0; i < graphPanel.vertices.size(); i++){
 					int index = Integer.parseInt(v.getToolTipText());
-					if(v.adjacencies.contains(i)){
+					/*if(v.adjacencies.contains(i)){
 						row.add(1);
+					}*/
+					if(i != index){
+						row.add(Collections.frequency(v.adjacencies, i));
 					}
 					else if(i == index){
 						row.add(-v.adjacencies.size());
 					}
-					else row.add(0);
+					//else row.add(0);
 				}
 				matrix.add(row);
 			}

@@ -2,7 +2,7 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 
@@ -10,7 +10,7 @@ public class Vertex extends JButton{
 	int x, y, chips;
 	GraphPanel panel;
 	
-	public HashSet<Integer> adjacencies;
+	public ArrayList<Integer> adjacencies;
 	public static int index1;
 	public static final int RADIUS = 25;
 	
@@ -20,7 +20,7 @@ public class Vertex extends JButton{
 	public Vertex(int x, int y){
 		this.x = x;
 		this.y = y-Vertex.RADIUS;
-		adjacencies = new HashSet<Integer>();
+		adjacencies = new ArrayList<Integer>();
 		setBounds(x-Vertex.RADIUS, this.y-Vertex.RADIUS, 2*RADIUS, 2*RADIUS);
 		//System.out.println(insets.left + " affefaer " + insets.top);
 		chips = 0;

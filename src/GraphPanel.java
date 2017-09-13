@@ -43,7 +43,7 @@ public class GraphPanel extends JPanel{
 			selected.setBackground(Color.WHITE);
 		}
 		selected = v;
-		selected.setBackground(Color.BLUE);
+		selected.setBackground(Color.YELLOW);
   }
 
 	public void dhar(Vertex v){
